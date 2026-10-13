@@ -3,7 +3,7 @@ const cars=[{"id":1,"name":"Porsche Taycan","category":"Sedans","legroom":null,"
 const KEY="garage-local-stars-v1";let fav;try{fav=new Set(JSON.parse(localStorage.getItem(KEY)||"[]"))}catch(e){fav=new Set()}
 let category="All",sort="id",asc=true,expanded=new Set(),q="",only=false;
 const tabs=["All","SUVs & Trucks","Sedans","Sports & GTs"],cols=[["id","#"],["name","Vehicle"],["legroom","Front legroom"],["length","Length"],["width","Width"],["height","Height"]];
-const fmt=x=>x==null?"—":x.toFixed(1)+'″';
+const fmt=x=>x==null?"TBD":x.toFixed(1)+'″';
 function render(){document.getElementById("tabs").innerHTML=tabs.map(t=>'<button data-tab="'+t+'" class="'+(t===category?"active":"")+'">'+(t==="All"?"Master":t)+'</button>').join("");
 document.querySelectorAll("[data-tab]").forEach(b=>b.onclick=()=>{category=b.dataset.tab;render()});
 document.getElementById("head").innerHTML='<tr><th>★</th>'+cols.map(([k,n])=>'<th><button data-sort="'+k+'" class="'+(sort===k?"sorted":"")+'" aria-label="Sort by '+n+(sort===k?(asc?', ascending':', descending'):'')+'">'+n+'<span class="sort-icon" aria-hidden="true"><svg viewBox="0 0 16 16">'+(sort===k?(asc?'<path d="M4 10l4-4 4 4"/>':'<path d="M4 6l4 4 4-4"/>'):'<path d="M5 6l3-3 3 3M5 10l3 3 3-3"/>')+'</svg></span></button></th>').join("")+'</tr>';
