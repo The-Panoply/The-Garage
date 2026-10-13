@@ -1,4 +1,4 @@
-# Kyle's Garage
+# The Garage
 
 Private-source vehicle comparison prototype, with 24 models and provisional measurements.
 
