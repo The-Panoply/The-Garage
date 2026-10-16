@@ -323,13 +323,13 @@ thead th:nth-child(3)>button .sort-icon{flex:none;min-width:18px}
 @media(max-width:650px){.powertrain-filter{width:24px;height:23px}.powertrain-filter--hybrid{width:30px}.powertrain-filter svg{width:12px;height:12px}.powertrain-filter--hybrid svg{width:10px;height:10px}}
 /* Align the hybrid filter's right edge to Sport Cars' right edge on tablet/desktop. */
 @media(min-width:651px){.powertrain-filters{left:var(--sport-cars-right,calc(41% - 31px));transform:translate(-100%,-50%)}}
-/* Phone-only refinement: names keep their original left edge and badges
-   follow their own vehicle name instead of aligning to toolbar filters. */
+/* Phone-only refinement: keep original name spacing, put the per-car symbol
+   after its name, and put the separate filter buttons below a compact Sort By. */
 @media(max-width:650px){
   .vehicle-toolbar{margin-top:42px;margin-bottom:13px}
-  .filter-bar{padding-bottom:27px;margin:6px 0 7px}
-  .powertrain-filters{left:38px;transform:none}
-  .mobile-sort{box-sizing:border-box;width:calc(100% - 24px);max-width:380px;margin:12px auto 11px}
+  .filter-bar{padding-bottom:0;margin:6px 0 6px}
+  .mobile-sort{box-sizing:border-box;width:min(236px,100%);max-width:236px;margin:8px auto 3px}
+  .powertrain-filters{position:static;left:auto;right:auto;top:auto;bottom:auto;transform:none;display:flex;width:max-content;max-width:100%;margin:6px auto 12px}
   .vehicle-name-wrap .vehicle-label{display:inline;padding-left:0}
   .vehicle-name-wrap .muted{display:block;padding-left:0}
   .vehicle-name-wrap>.powertrain-indicator{position:static;left:auto;right:auto;bottom:auto;display:inline-flex;margin-left:5px;vertical-align:middle}
@@ -432,6 +432,20 @@ function placeSearchField(){
 }
 placeSearchField();
 phoneLayout.addEventListener("change",placeSearchField);
+/* The phone filter strip is independent of vehicle badges; desktop keeps its toolbar. */
+const powertrainControls=document.getElementById("powertrain-filters");
+const powertrainBar=document.querySelector(".filter-bar");
+function placePowertrainControls(){
+ if(phoneLayout.matches){
+  mobileSortBar.insertAdjacentElement("afterend",powertrainControls);
+ }else{
+  powertrainBar.insertBefore(powertrainControls,powertrainBar.querySelector(".dimension-switch"));
+ }
+ alignPowertrainFilters();
+ alignPowertrainRowIcons();
+}
+placePowertrainControls();
+phoneLayout.addEventListener("change",placePowertrainControls);
 function toggleMobileSearch(forceOpen){
  const open=typeof forceOpen==="boolean"?forceOpen:!mobileSortBar.classList.contains("search-open");
  mobileSortBar.classList.toggle("search-open",open);
