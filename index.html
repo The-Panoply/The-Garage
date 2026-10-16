@@ -369,7 +369,21 @@ function alignPowertrainFilters(){
  const sport=document.querySelector('#tabs [data-tab="Sports & GTs"]');
  if(bar&&sport)bar.style.setProperty("--sport-cars-right",(sport.getBoundingClientRect().right-bar.getBoundingClientRect().left)+"px");
 }
-window.addEventListener("resize",alignPowertrainFilters);
+/* The table's powertrain symbols share the gasoline filter button's horizontal center.
+   Measure the rendered controls so the alignment survives layout and viewport changes. */
+function alignPowertrainRowIcons(){
+ const fuelButton=document.querySelector(".powertrain-filter--fuel");
+ if(!fuelButton)return;
+ const buttonRect=fuelButton.getBoundingClientRect();
+ const centerX=buttonRect.left+buttonRect.width/2;
+ document.querySelectorAll(".vehicle-name-wrap>.powertrain-indicator").forEach(icon=>{
+  const wrapperRect=icon.parentElement.getBoundingClientRect();
+  const iconWidth=icon.getBoundingClientRect().width;
+  icon.style.right="auto";
+  icon.style.left=(centerX-wrapperRect.left-iconWidth/2)+"px";
+ });
+}
+window.addEventListener("resize",()=>{alignPowertrainFilters();alignPowertrainRowIcons()});
 function render(){
 document.querySelector(".scroll table").classList.toggle("exterior-gap-tuned",dimensionMode==="exterior");
 document.getElementById("powertrain-filters").innerHTML=powertrainOptions.map(opt=>'<button type="button" class="powertrain-filter powertrain-filter--'+opt.type+(powertrainOnly===opt.type?' is-active':'')+'" data-powertrain-filter="'+opt.type+'" aria-pressed="'+String(powertrainOnly===opt.type)+'" aria-label="'+opt.label+'" title="'+opt.label+'">'+opt.symbol+'</button>').join("");
@@ -383,6 +397,7 @@ const arr=cars.filter(c=>(c.benchmark?category==="All":category==="All"||c.categ
 arr.sort((a,b)=>Number(!!a.benchmark)-Number(!!b.benchmark));const position=new Map(arr.map((c,i)=>[c.id,i+1]));document.getElementById("count").textContent=arr.length+" of "+cars.length+" vehicles";
 document.getElementById("body").innerHTML=arr.map((c,i)=>(c.benchmark&&(i===0||!arr[i-1].benchmark)?'<tr class="benchmark-divider"><td colspan="7">Benchmark Vehicles</td></tr>':"")+'<tr class="vehicle-row'+(expanded.has(c.id)?' is-expanded':'')+'" data-expand="'+c.id+'" tabindex="0" role="button" aria-expanded="'+expanded.has(c.id)+'"><td><button class="star" data-star="'+c.id+'">'+(fav.has(c.id)?"★":"☆")+'</button></td><td>'+position.get(c.id)+'</td><td><div class="vehicle-cell"><span class="vehicle-brand-slot">'+(brandIcons[c.id]?'<span class="vehicle-brand" data-brand="'+brandIcons[c.id][0]+'"><span class="vehicle-brand-fallback" aria-hidden="true">'+brandAbbrev(c.id)+'</span><img src="'+logoURL(c.id)+'" alt="'+c.name.split(" ")[0]+' manufacturer emblem" loading="lazy" onerror="this.style.visibility=\'hidden\'"></span>':'')+'</span><div class="vehicle-name-wrap"><span class="vehicle-label">'+c.name+'</span><div class="muted">'+c.category+'</div>'+powertrainBadge(c)+'</div><span class="vehicle-photo-slot">'+((officialPhotos[c.id]||demoPhotos[c.id])?'<img class="vehicle-photo" src="'+photoURL(c.id)+'" alt="'+c.name+' photograph" loading="lazy" title="Photo: '+(officialPhotos[c.id]?.credit||demoPhotos[c.id][1]+' (Wikimedia Commons)')+'" onerror="this.style.visibility=\'hidden\'">':c.id===7?'<div class="vehicle-photo-wrap"><img class="vehicle-photo" src="https://cdn.bmwblog.com/wp-content/uploads/2026/07/BMW-M-Concept-Neue-Klasse-1-1.jpg" alt="Red BMW M concept" loading="lazy"></div>':'')+'</span></div></td>'+dimensionCols[dimensionMode].map(([k,label])=>'<td data-label="'+label+'">'+dimensionCell(c,k)+'</td>').join("")+'</tr>'+(expanded.has(c.id)?'<tr class="detail-row"><td colspan="7" class="detail"><div class="detail-grid">'+[['Starting U.S. MSRP','msrp'],['Powertrain','powertrain'],['Horsepower','horsepower']].map(([label,key])=>'<div class="detail-item"><span class="detail-label">'+label+'</span><strong class="detail-value">'+detailValue(c,key)+'</strong>'+(key==="msrp"?msrpFootnote(c):"")+'</div>').join('')+dimensionNote(c)+logoCredit(c)+'</div></td></tr>':"")).join("");
 document.querySelectorAll("tr.vehicle-row img.vehicle-photo").forEach(img=>{img.onerror=()=>{const row=img.closest("tr.vehicle-row"),id=Number(row?.dataset.expand);img.onerror=()=>{img.style.visibility="hidden"};if(demoPhotos[id]){img.style.visibility="visible";img.src="https://commons.wikimedia.org/wiki/Special:FilePath/"+encodeURIComponent(demoPhotos[id][0])+"?width=330"}else img.style.visibility="hidden"}});
+alignPowertrainRowIcons();
 document.querySelectorAll("[data-star]").forEach(b=>b.onclick=e=>{e.stopPropagation();const id=+b.dataset.star;if(fav.has(id)){fav.delete(id)}else{const limit=window.matchMedia("(max-width:650px)").matches?2:4;if(fav.size>=limit){alert("Select up to "+limit+" vehicles to compare on this screen. Remove a star to add another.");return}fav.add(id)}try{localStorage.setItem(KEY,JSON.stringify([...fav]))}catch(e){}render()});
 document.querySelectorAll("tr.vehicle-row").forEach(row=>{const toggle=()=>{const id=+row.dataset.expand;const wasOpen=expanded.has(id);expanded.clear();if(!wasOpen)expanded.add(id);render()};row.onclick=e=>{if(e.target.closest("[data-star]"))return;toggle()};row.onkeydown=e=>{if((e.key==="Enter"||e.key===" ")&&!e.target.closest("button")){e.preventDefault();toggle()}}})}
 document.getElementById("mobile-sort-field").onchange=e=>{sort=e.target.value;asc=sort==="id"||sort==="name";render()};document.getElementById("mobile-sort-direction").onclick=()=>{asc=!asc;render()};const searchField=document.getElementById("search");
