@@ -249,7 +249,7 @@ thead th:nth-child(3)>button .sort-icon{flex:none;min-width:18px}
 
 /* Three small powertrain filter buttons above the vehicle-photo area; controls and table sizing stay put. */
 .filter-bar{position:relative}
-.powertrain-filters{position:absolute;left:41%;top:50%;transform:translate(-50%,-50%);display:inline-flex;align-items:center;justify-content:center;gap:6px;white-space:nowrap}
+.powertrain-filters{position:absolute;left:calc(41% - 31px);top:50%;transform:translate(-50%,-50%);display:inline-flex;align-items:center;justify-content:center;gap:6px;white-space:nowrap}
 .powertrain-filter{display:inline-flex;align-items:center;justify-content:center;gap:1px;flex:none;width:30px;height:29px;box-sizing:border-box;padding:0;border:1px solid;border-radius:9px;cursor:pointer;transition:background-color .15s,border-color .15s,box-shadow .15s}
 .powertrain-filter svg{display:block;width:15px;height:15px;flex:none}
 .powertrain-filter--electric{background:#f2f8e9;border-color:#dceacb;color:#caa021}
@@ -266,7 +266,7 @@ thead th:nth-child(3)>button .sort-icon{flex:none;min-width:18px}
 .powertrain-filter.is-active.powertrain-filter--electric{background:#e3f1d4}
 .powertrain-filter.is-active.powertrain-filter--fuel{background:#f2dfdc}
 .powertrain-filter.is-active.powertrain-filter--hybrid{background:linear-gradient(90deg,#e3f1d4 0 50%,#f2dfdc 50%)}
-@media(max-width:650px){.filter-bar{padding-bottom:30px}.powertrain-filters{top:auto;bottom:0;gap:5px}.powertrain-filter{width:26px;height:25px;border-radius:7px}.powertrain-filter svg{width:13px;height:13px}.powertrain-filter--hybrid{width:34px}.powertrain-filter--hybrid svg{width:11px;height:11px}}
+@media(max-width:650px){.filter-bar{padding-bottom:30px}.powertrain-filters{left:calc(41% - 29px);top:auto;bottom:0;gap:5px}.powertrain-filter{width:26px;height:25px;border-radius:7px}.powertrain-filter svg{width:13px;height:13px}.powertrain-filter--hybrid{width:34px}.powertrain-filter--hybrid svg{width:11px;height:11px}}
 
 /* Finishing refinements: category controls, badge color, masthead scale, and visual dimension spacing. */
 /* Original category button dimensions and spacing, with only a pale inactive fill. */
