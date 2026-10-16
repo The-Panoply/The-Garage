@@ -306,19 +306,19 @@ thead th:nth-child(3)>button .sort-icon{flex:none;min-width:18px}
 /* Outline-only fuel markers: brighter glyphs, transparent surfaces and less visual noise. */
 .powertrain-indicator{background:transparent;border-color:transparent;box-shadow:none}
 .powertrain-indicator--electric,.powertrain-indicator--fuel,.powertrain-indicator--hybrid{background:transparent;border-color:transparent}
-.powertrain-indicator--electric{color:#239f56}
-.powertrain-indicator--electric svg,.powertrain-indicator--hybrid .electric-mark{fill:none;stroke:#239f56;stroke-width:2.4;stroke-linecap:round;stroke-linejoin:round}
-.powertrain-indicator--fuel{color:#c74c44}
-.powertrain-indicator--fuel svg,.powertrain-indicator--hybrid .fuel-mark{fill:none;stroke:#c74c44;stroke-width:2.1;stroke-linecap:round;stroke-linejoin:round}
+.powertrain-indicator--electric{color:#168beb}
+.powertrain-indicator--electric svg,.powertrain-indicator--hybrid .electric-mark{fill:none;stroke:#168beb;stroke-width:2.4;stroke-linecap:round;stroke-linejoin:round}
+.powertrain-indicator--fuel{color:#c77a2e}
+.powertrain-indicator--fuel svg,.powertrain-indicator--hybrid .fuel-mark{fill:none;stroke:#c77a2e;stroke-width:2.1;stroke-linecap:round;stroke-linejoin:round}
 .powertrain-filter,.powertrain-filter--electric,.powertrain-filter--fuel,.powertrain-filter--hybrid{background:transparent;border-color:#d2d9df;box-shadow:none}
 .powertrain-filter{width:25px;height:25px;border-radius:7px}
 .powertrain-filter svg{width:13px;height:13px}
 .powertrain-filter--hybrid{width:32px}
 .powertrain-filter--hybrid svg{width:11px;height:11px}
-.powertrain-filter--electric{color:#239f56}
-.powertrain-filter--fuel{color:#c74c44}
-.powertrain-filter--electric svg,.powertrain-filter--hybrid .electric-mark{fill:none;stroke:#239f56;stroke-width:2.3;stroke-linecap:round;stroke-linejoin:round}
-.powertrain-filter--fuel svg,.powertrain-filter--hybrid .fuel-mark{fill:none;stroke:#c74c44;stroke-width:2.1;stroke-linecap:round;stroke-linejoin:round}
+.powertrain-filter--electric{color:#168beb}
+.powertrain-filter--fuel{color:#c77a2e}
+.powertrain-filter--electric svg,.powertrain-filter--hybrid .electric-mark{fill:none;stroke:#168beb;stroke-width:2.3;stroke-linecap:round;stroke-linejoin:round}
+.powertrain-filter--fuel svg,.powertrain-filter--hybrid .fuel-mark{fill:none;stroke:#c77a2e;stroke-width:2.1;stroke-linecap:round;stroke-linejoin:round}
 .powertrain-filter.is-active,.powertrain-filter.is-active.powertrain-filter--electric,.powertrain-filter.is-active.powertrain-filter--fuel,.powertrain-filter.is-active.powertrain-filter--hybrid{background:transparent;border-color:#65869d;box-shadow:0 0 0 1px rgba(57,104,136,.29)}
 @media(max-width:650px){.powertrain-filter{width:24px;height:23px}.powertrain-filter--hybrid{width:30px}.powertrain-filter svg{width:12px;height:12px}.powertrain-filter--hybrid svg{width:10px;height:10px}}
 </style></head><body><main><header class="wordmark-header" aria-label="The Garage"><h1 class="garage-logo"><span class="garage-the">THE</span><span class="garage-word">GARAGE</span></h1><img class="garage-shifter-mark" src="assets/shifters/gated-shifter-navy-gold-small.png" alt="" aria-hidden="true" width="100" height="198"></header><div class="vehicle-toolbar" id="vehicle-toolbar"><div class="controls" id="tabs"></div><input id="search" type="search" aria-label="Search vehicles" placeholder="Search vehicles"></div><div class="filter-bar"><label class="favorites-toggle" for="favonly"><input id="favonly" type="checkbox"><span class="favorites-label"><span class="favorites-star" aria-hidden="true">★</span><span>Compare</span></span><span class="toggle-track" aria-hidden="true"><span class="toggle-thumb"></span></span></label><div class="powertrain-filters" id="powertrain-filters" role="group" aria-label="Filter vehicles by powertrain"></div><div class="dimension-switch" role="group" aria-label="Dimensions view"><button type="button" data-dim-mode="exterior" class="active" aria-pressed="true">Exterior</button><button type="button" data-dim-mode="interior" aria-pressed="false">Interior</button></div></div><div class="mobile-sort"><label for="mobile-sort-field">Sort by</label><select id="mobile-sort-field"><option value="id">Default order</option><option value="name">Vehicle name</option><option value="length">Length</option><option value="width">Width</option><option value="height">Height</option><option value="wheelbase">Wheelbase</option></select><button type="button" id="mobile-sort-direction" aria-label="Reverse sort direction">↑</button><button type="button" class="mobile-search-toggle" id="mobile-search-toggle" aria-label="Show vehicle search" aria-controls="search" aria-expanded="false"><svg class="search-glass-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="10.7" cy="10.7" r="6.8"></circle><path d="m16 16 5 5"></path></svg><svg class="search-close-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M5 5l14 14M19 5L5 19"></path></svg></button></div><div class="scroll"><table><thead id="head"></thead><tbody id="body"></tbody></table></div><div class="count-footer"><span id="count" class="vehicle-count" aria-live="polite"></span></div><p>Measurements are preliminary and should be verified against official model-year specifications. Favorites are saved only in this browser and are not synchronized.</p></main><script>
