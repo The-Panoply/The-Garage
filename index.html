@@ -231,7 +231,7 @@ thead th:nth-child(3)>button .sort-icon{flex:none;min-width:18px}
 }
 
 /* Small, quiet powertrain markers beside the category line, never over vehicle photography. */
-.vehicle-name-wrap .vehicle-category-row{display:flex;align-items:center;gap:5px;flex-wrap:wrap}
+.vehicle-name-wrap .vehicle-category-row{display:flex;align-items:center;justify-content:space-between;gap:5px;flex-wrap:nowrap;width:100%;min-width:0}.vehicle-category-row .powertrain-indicator{margin-left:auto;margin-right:4px}
 .powertrain-indicator{position:static;transform:none;display:inline-flex;align-items:center;justify-content:center;flex:none;width:13px;height:13px;box-sizing:border-box;border-radius:4px;border:1px solid;box-shadow:none;vertical-align:middle}
 .powertrain-indicator svg{display:block;width:8px;height:8px;flex:none}
 .powertrain-indicator--electric{background:#eaf4df;border-color:#dceacd;color:#cea11a}
@@ -242,7 +242,7 @@ thead th:nth-child(3)>button .sort-icon{flex:none;min-width:18px}
 .powertrain-indicator--hybrid svg{width:7px;height:7px}
 .powertrain-indicator--hybrid .electric-mark{fill:#cea11a}
 .powertrain-indicator--hybrid .fuel-mark{fill:none;stroke:#b9786f;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
-@media(max-width:650px){.vehicle-name-wrap .vehicle-category-row{gap:4px}.powertrain-indicator{width:12px;height:12px}.powertrain-indicator--hybrid{width:18px}}
+@media(max-width:650px){.vehicle-name-wrap .vehicle-category-row{gap:4px}.vehicle-category-row .powertrain-indicator{margin-right:2px}.powertrain-indicator{width:12px;height:12px}.powertrain-indicator--hybrid{width:18px}}
 /* More separation between the masthead and vehicle category buttons. */
 .vehicle-toolbar{margin-top:24px}
 @media(max-width:650px){.vehicle-toolbar{margin-top:20px}}
