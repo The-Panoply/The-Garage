@@ -1,0 +1,62 @@
+/* Automatic system appearance. Light-mode layouts and artwork remain unchanged. */
+:root { color-scheme: light; }
+.panoply-footer { box-sizing: border-box; }
+@media (prefers-color-scheme: dark) {
+ :root { color-scheme: dark; }
+ html, body { background: var(--app-bg); color: var(--app-ink); }
+ .panoply-footer { background: var(--app-bg); color: var(--app-ink); border-color: var(--app-line); }
+ .panoply-footer-brand { color: #d1b47c; }
+ .panoply-footer-brand::before, .panoply-footer-brand::after { background: #d1b47c; }
+ .panoply-footer-sites a { color: #b9c8d1; }
+ .panoply-footer-sites a:hover { color: #e2c68e; }
+ input::placeholder { color: #a8b7c1; opacity: 1; }
+ ::selection { background: #536b7d; color: #fff; }
+}
+
+@media (prefers-color-scheme: dark) {
+ :root { --app-bg:#18212b; --app-ink:#e0e7ed; --app-line:#3a4958; --app-surface:#222f3d; --app-muted:#b1bfcb; }
+ .wordmark-header .garage-logo, h1 { color: var(--app-ink); }
+ p, .muted, .vehicle-count, .detail-label, .msrp-meta, .dimension-note, .mobile-sort label { color: var(--app-muted); }
+ .garage-panoply { color:#d1b47c; }
+ button, input, select,
+ .vehicle-toolbar .controls button:not(.active),
+ .mobile-sort-with-powertrain .mobile-sort select,
+ .mobile-sort-with-powertrain .mobile-sort #mobile-sort-direction,
+ .mobile-sort-with-powertrain .mobile-sort .mobile-search-toggle,
+ .mobile-top-grid .powertrain-filter { background:var(--app-surface); color:var(--app-ink); border-color:#52677b; }
+ button.active, .mobile-top-grid .powertrain-filter.is-active { background:#315f86; color:#fff; border-color:#7099bb; }
+ th, td, thead th { border-color:var(--app-line); }
+ thead { background:var(--app-surface); }
+ th button { background:transparent; color:var(--app-ink); }
+ th button:hover { color:#a5d1f4; }
+ .sort-icon { color:#a8b9c8; }
+ th button.sorted .sort-icon { color:#b8ddfa; background:#30485d; }
+ tbody tr:hover, tbody tr:not(.detail-row):hover { background:#263645; }
+ tbody tr:not(.detail-row) { border-color:var(--app-line); }
+ tbody tr.detail-row, .detail { background:#253443; border-color:var(--app-line); }
+ tbody tr.vehicle-row.is-expanded, tbody tr.vehicle-row.is-expanded>td { background-color:#253443!important; }
+ .detail-value { color:var(--app-ink); }
+ .msrp-meta a { color:#a5d1f4; }
+ .dim-stack-code { color:#a6b6c4; }
+ tbody tr:not(.detail-row)>td:nth-child(2), tbody tr:not(.detail-row)>td:nth-child(n+4)::before { color:var(--app-muted); }
+ .favorites-toggle { color:var(--app-ink); }
+ .toggle-track { background:#435366; border-color:#6b8095; }
+ .favorites-toggle input:checked~.toggle-track { background:#426f99; border-color:#88a9c8; }
+ .dimension-switch { background:var(--app-surface); border-color:var(--app-line); }
+ .dimension-switch button { background:transparent; color:var(--app-muted); }
+ .dimension-switch button.active { background:#315f86; color:#fff; }
+ .powertrain-filter, .powertrain-filter--electric, .powertrain-filter--fuel, .powertrain-filter--hybrid { background:var(--app-surface); border-color:#52677b; }
+ .powertrain-filter.is-active { background:#31506a; border-color:#91b9d9; }
+ /* Keep manufacturer artwork on its original light backing; never invert photos. */
+ .vehicle-brand img { background:#f5f7f8; border-radius:4px; }
+ .vehicle-brand[data-brand="rivian"] img { background:#f5f7f8; mix-blend-mode:normal; opacity:1; }
+ .vehicle-photo { border-color:var(--app-line); background:var(--app-surface); }
+ .vehicle-brand-fallback { background:#e3e9ee; }
+ .powertrain-indicator--fuel svg, .powertrain-indicator--hybrid .fuel-mark,
+ .powertrain-filter--fuel svg, .powertrain-filter--hybrid .fuel-mark { stroke:#b1bfcb; }
+ .mobile-top-grid .powertrain-filter.is-active svg, .mobile-top-grid .powertrain-filter.is-active .fuel-mark { stroke:#fff; }
+ @media(max-width:650px) {
+  tbody tr:not(.detail-row) { background:var(--app-bg); }
+  tbody tr:not(.detail-row)>td:nth-child(n+4) { border-color:var(--app-line); }
+ }
+}
